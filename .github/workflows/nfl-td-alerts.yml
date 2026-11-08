@@ -47,6 +47,10 @@ jobs:
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
           TEAMS_FILTER: ${{ vars.TEAMS_FILTER }}
         run: |
+          if [ -z "$NTFY_TOPIC$TEAMS_WEBHOOK_URL$TWILIO_ACCOUNT_SID$CALLMEBOT_APIKEY" ]; then
+            echo "::warning::No alert channel secret set yet (e.g. NTFY_TOPIC) - skipping. See nfl-td-alerts/README.md"
+            exit 0
+          fi
           if [ "${{ inputs.test }}" = "true" ]; then
             python td_alerts.py --test
           else
