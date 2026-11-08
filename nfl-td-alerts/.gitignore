@@ -1,0 +1,4 @@
+.env
+data/
+td_state.json
+__pycache__/

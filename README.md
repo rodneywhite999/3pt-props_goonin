@@ -61,3 +61,9 @@ This scanner enforces a strict rule: **stats are either real API data or blank**
 ## License
 
 MIT — do whatever you want with it.
+
+---
+
+## Also in this repo
+
+- [`nfl-td-alerts/`](nfl-td-alerts/) — push / Teams / WhatsApp alert for every NFL touchdown.

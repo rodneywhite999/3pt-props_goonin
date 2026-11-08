@@ -1,0 +1,19 @@
+# systemd unit: copy to /etc/systemd/system/, adjust paths, then
+#   sudo systemctl enable --now td-alerts
+[Unit]
+Description=NFL touchdown alerts
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/nfl-td-alerts
+EnvironmentFile=/opt/nfl-td-alerts/.env
+ExecStart=/usr/bin/python3 /opt/nfl-td-alerts/td_alerts.py
+Restart=always
+RestartSec=10
+DynamicUser=yes
+StateDirectory=td-alerts
+Environment=STATE_FILE=/var/lib/td-alerts/td_state.json
+
+[Install]
+WantedBy=multi-user.target
